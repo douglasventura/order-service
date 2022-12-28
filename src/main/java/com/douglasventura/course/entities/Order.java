@@ -3,6 +3,7 @@ package com.douglasventura.course.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
+import com.douglasventura.course.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
@@ -30,15 +31,28 @@ public class Order implements Serializable{
     @JoinColumn(name = "client_id")
     private User client;
 
+    private Integer orderStatus;
+
     // empty constructor
     public Order() { }    
 
-    public Order(Long id, Instant date, User client) {
+    public Order(Long id, Instant date, User client, OrderStatus orderStatus) {
         super();
         this.id = id;
         this.date = date;
         this.client = client;
+        setOrderStatus(orderStatus);
     }
+
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(orderStatus);
+    }
+
+	private void setOrderStatus(OrderStatus orderStatus) {
+        if (orderStatus != null) {
+            this.orderStatus = orderStatus.getCode();
+        }
+	}
 
 	public Long getId() {
 		return id;
