@@ -16,92 +16,91 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_order")
-public class Order implements Serializable{
+public class Order implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
-    private Instant date;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
+  private Instant date;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private User client;
+  @ManyToOne
+  @JoinColumn(name = "client_id")
+  private User client;
 
-    private Integer orderStatus;
+  private Integer orderStatus;
 
-    // empty constructor
-    public Order() { }    
+  // empty constructor
+  public Order() {
+  }
 
-    public Order(Long id, Instant date, User client, OrderStatus orderStatus) {
-        super();
-        this.id = id;
-        this.date = date;
-        this.client = client;
-        setOrderStatus(orderStatus);
+  public Order(Long id, Instant date, User client, OrderStatus orderStatus) {
+    super();
+    this.id = id;
+    this.date = date;
+    this.client = client;
+    setOrderStatus(orderStatus);
+  }
+
+  public OrderStatus getOrderStatus() {
+    return OrderStatus.valueOf(orderStatus);
+  }
+
+  private void setOrderStatus(OrderStatus orderStatus) {
+    if (orderStatus != null) {
+      this.orderStatus = orderStatus.getCode();
     }
+  }
 
-    public OrderStatus getOrderStatus() {
-        return OrderStatus.valueOf(orderStatus);
-    }
+  public Long getId() {
+    return id;
+  }
 
-	private void setOrderStatus(OrderStatus orderStatus) {
-        if (orderStatus != null) {
-            this.orderStatus = orderStatus.getCode();
-        }
-	}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-	public Long getId() {
-		return id;
-	}
+  public Instant getDate() {
+    return date;
+  }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+  public void setDate(Instant date) {
+    this.date = date;
+  }
 
-	public Instant getDate() {
-		return date;
-	}
+  public User getClient() {
+    return client;
+  }
 
-	public void setDate(Instant date) {
-		this.date = date;
-	}
+  public void setClient(User client) {
+    this.client = client;
+  }
 
-	public User getClient() {
-		return client;
-	}
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((id == null) ? 0 : id.hashCode());
+    return result;
+  }
 
-	public void setClient(User client) {
-		this.client = client;
-	}
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        
-        Order other = (Order) obj;
-        
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
-    }
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Order other = (Order) obj;
+    if (id == null) {
+      if (other.id != null)
+        return false;
+    } else if (!id.equals(other.id))
+      return false;
+    return true;
+  }
 }

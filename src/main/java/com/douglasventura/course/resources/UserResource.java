@@ -16,19 +16,19 @@ import com.douglasventura.course.services.UserService;
 @RequestMapping(value = "/users")
 public class UserResource {
 
-    @Autowired
-    private UserService userService;
+  @Autowired
+  private UserService userService;
 
-    @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        List<User> users = userService.findAll();
-        return ResponseEntity.ok().body(users);
-    }
+  @GetMapping
+  public ResponseEntity<List<User>> findAll() {
+    List<User> users = userService.findAll();
+    return ResponseEntity.ok().body(users);
+  }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id) {
-        User user = userService.findById(id);
-        return ResponseEntity.ok().body(user);
-    }
-    
+  @GetMapping(value = "/{id}")
+  public ResponseEntity<User> findById(@PathVariable Long id) {
+    User user = userService.findById(id);
+    return ResponseEntity.ok().body(user);
+  }
+
 }

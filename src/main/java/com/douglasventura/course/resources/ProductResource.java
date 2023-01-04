@@ -16,19 +16,19 @@ import com.douglasventura.course.services.ProductService;
 @RequestMapping(value = "/products")
 public class ProductResource {
 
-    @Autowired
-    private ProductService userService;
+  @Autowired
+  private ProductService userService;
 
-    @GetMapping
-    public ResponseEntity<List<Product>> findAll() {
-        List<Product> users = userService.findAll();
-        return ResponseEntity.ok().body(users);
-    }
+  @GetMapping
+  public ResponseEntity<List<Product>> findAll() {
+    List<Product> users = userService.findAll();
+    return ResponseEntity.ok().body(users);
+  }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Product> findById(@PathVariable Long id) {
-        Product user = userService.findById(id);
-        return ResponseEntity.ok().body(user);
-    }
-    
+  @GetMapping(value = "/{id}")
+  public ResponseEntity<Product> findById(@PathVariable Long id) {
+    Product user = userService.findById(id);
+    return ResponseEntity.ok().body(user);
+  }
+
 }

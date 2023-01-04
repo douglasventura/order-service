@@ -16,19 +16,19 @@ import com.douglasventura.course.services.OrderService;
 @RequestMapping(value = "/orders")
 public class OrderResource {
 
-    @Autowired
-    private OrderService userService;
+  @Autowired
+  private OrderService userService;
 
-    @GetMapping
-    public ResponseEntity<List<Order>> findAll() {
-        List<Order> users = userService.findAll();
-        return ResponseEntity.ok().body(users);
-    }
+  @GetMapping
+  public ResponseEntity<List<Order>> findAll() {
+    List<Order> users = userService.findAll();
+    return ResponseEntity.ok().body(users);
+  }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Order> findById(@PathVariable Long id) {
-        Order user = userService.findById(id);
-        return ResponseEntity.ok().body(user);
-    }
-    
+  @GetMapping(value = "/{id}")
+  public ResponseEntity<Order> findById(@PathVariable Long id) {
+    Order user = userService.findById(id);
+    return ResponseEntity.ok().body(user);
+  }
+
 }

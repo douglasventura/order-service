@@ -16,19 +16,19 @@ import com.douglasventura.course.services.CategoryService;
 @RequestMapping(value = "/categories")
 public class CategoryResource {
 
-    @Autowired
-    private CategoryService categoryService;
+  @Autowired
+  private CategoryService categoryService;
 
-    @GetMapping
-    public ResponseEntity<List<Category>> findAll() {
-        List<Category> categories = categoryService.findAll();
-        return ResponseEntity.ok().body(categories);
-    }
+  @GetMapping
+  public ResponseEntity<List<Category>> findAll() {
+    List<Category> categories = categoryService.findAll();
+    return ResponseEntity.ok().body(categories);
+  }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Category> findById(@PathVariable Long id) {
-        Category category = categoryService.findById(id);
-        return ResponseEntity.ok().body(category);
-    }
-    
+  @GetMapping(value = "/{id}")
+  public ResponseEntity<Category> findById(@PathVariable Long id) {
+    Category category = categoryService.findById(id);
+    return ResponseEntity.ok().body(category);
+  }
+
 }
